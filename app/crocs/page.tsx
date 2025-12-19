@@ -1,62 +1,106 @@
 "use client";
 
+import React, { useState } from "react";
+
+type Category =
+  | "Classic Clog"
+  | "LiteRide Clog"
+  | "Crocband Clog"
+  | "Baya Clog"
+  | "Classic Slide";
+
 const CROCS_ITEMS = [
   {
-    name: "Crocs Classic Clog",
+    name: "Classic Clog",
     color: "Black",
     type: "Unisex",
     condition: "New / Tag",
     img: "/1crocs.jpeg",
+    price: 49.99,
+    category: "Classic Clog",
     description:
-      "The original Crocs Classic Clog in all-black. Lightweight, breathable, and designed for all-day wear with Iconic Crocs Comfort™.",
+      "The original Classic Clog. Lightweight, water-friendly, and perfect for any occasion.",
   },
   {
-    name: "Crocs Classic Platform Clog",
-    color: "Light Pink",
-    type: "Unisex",
-    condition: "New / Boxed",
-    img: "/2crocs.jpeg",
-    description:
-      "An elevated take on the Classic Clog featuring a platform sole. Soft pastel finish with added height while maintaining signature comfort.",
-  },
-  {
-    name: "Crocs Classic Cars™ Clog",
-    color: "Red · Lightning McQueen",
-    type: "Unisex",
-    condition: "New / Tag",
-    img: "/3crocs.jpeg",
-    description:
-      "Official Disney·Pixar Cars™ Crocs with Lightning McQueen graphics. A bold, collectible pair made for comfort and fun.",
-  },
-  {
-    name: "Crocs Classic Clog",
-    color: "Hot Pink",
-    type: "Unisex",
-    condition: "New / Tag",
-    img: "/4crocs.jpeg",
-    description:
-      "Vibrant hot pink Classic Crocs. Lightweight, water-friendly, and easy to style with bold or casual outfits.",
-  },
-  {
-    name: "Crocs Mega Crush Clog",
+    name: "Classic Clog",
     color: "White",
     type: "Unisex",
-    condition: "New / Boxed",
-    img: "/5crocs.jpeg",
+    condition: "New / Tag",
+    img: "/4crocs.jpeg", // Reusing image
+    price: 49.99,
+    category: "Classic Clog",
     description:
-      "The Mega Crush Clog features an exaggerated platform sole with enhanced traction and modern proportions for a fashion-forward look.",
+      "Fresh white Classic Clogs. The ultimate canvas for your Jibbitz™ charms.",
+  },
+  {
+    name: "LiteRide 360 Clog",
+    color: "Navy / Pepper",
+    type: "Unisex",
+    condition: "New / Boxed",
+    img: "/2crocs.jpeg", // Reusing image as placeholder
+    price: 64.99,
+    category: "LiteRide Clog",
+    description:
+      "Innovative comfort with LiteRide™ foam technology. softness and modern athletic style.",
+  },
+  {
+    name: "Crocband Clog",
+    color: "Charcoal / Ocean",
+    type: "Unisex",
+    condition: "New / Tag",
+    img: "/3crocs.jpeg", // Reusing image as placeholder
+    price: 54.99,
+    category: "Crocband Clog",
+    description:
+      "Vintage sneaker style meets Crocs comfort. Sporty midsole racing stripe for a retro look.",
+  },
+  {
+    name: "Baya Clog",
+    color: "Pepper",
+    type: "Unisex",
+    condition: "New / Tag",
+    img: "/5crocs.jpeg", // Reusing image as placeholder
+    price: 49.99,
+    category: "Baya Clog",
+    description:
+      "Designed with advanced ventilation and breathable comfort. The Baya keeps you cool.",
+  },
+  {
+    name: "Classic Slide",
+    color: "Bone",
+    type: "Unisex",
+    condition: "New / Tag",
+    img: "/1crocs.jpeg", // Reusing image
+    price: 29.99,
+    category: "Classic Slide",
+    description:
+      "All the comfort of the Classic Clog, now in a slide. Easy on, easy off.",
   },
 ];
 
+const CATEGORIES: Category[] = [
+  "Classic Clog",
+  "LiteRide Clog",
+  "Crocband Clog",
+  "Baya Clog",
+  "Classic Slide",
+];
+
 export default function CrocsPage() {
+  const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
+
+  const filteredItems = selectedCategory
+    ? CROCS_ITEMS.filter((item) => item.category === selectedCategory)
+    : [];
+
   return (
     <div className="min-h-screen">
       {/* NAVBAR */}
       <header className="sticky top-0 z-40 border-b border-[#e5e5e0] bg-[#fafaf8]/90 backdrop-blur">
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
-          <div className="text-2xl md:text-3xl tracking-[0.25em] font-light">
+          <a href="/" className="text-2xl md:text-3xl tracking-[0.25em] font-light text-[#0f0f0f]">
             STORE OVERSIZED
-          </div>
+          </a>
 
           <nav className="hidden gap-6 text-xs md:flex">
             <a
@@ -107,7 +151,7 @@ export default function CrocsPage() {
 
       <main className="pb-16">
         {/* HERO */}
-        <section className="relative flex min-h-[60vh] items-end overflow-hidden">
+        <section className="relative flex min-h-[50vh] items-end overflow-hidden">
           <img
             src="/1crocs.jpeg"
             alt="Crocs lineup"
@@ -115,81 +159,98 @@ export default function CrocsPage() {
           />
 
           {/* light-friendly overlays */}
-          <div className="absolute inset-0 bg-gradient-to-t from-white/92 via-white/55 to-white/10" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(0,0,0,0.10),_transparent_55%)]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-white/95 via-white/80 to-white/10" />
 
-          <div className="relative z-10 mx-auto max-w-6xl px-4 pb-20 pt-24">
-            <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.25em] text-[#4a4a4a]">
-              <span>CROCS</span>
-              <span className="h-px w-10 bg-[#4a4a4a]" />
-              <span>DISPLAY ONLY</span>
+          <div className="relative z-10 mx-auto w-full max-w-6xl px-4 pb-16 pt-24 text-center">
+            <h1 className="text-4xl md:text-6xl font-light text-[#0f0f0f] tracking-tight">
+              Crocs Collection
+            </h1>
+            <p className="mx-auto mt-4 max-w-lg text-sm md:text-base text-[#4a4a4a]">
+              Discover our range of iconic comfort. Select a style to view available colors.
+            </p>
+
+            {/* CATEGORY BUTTONS - LARGER */}
+            <div className="mt-12 flex flex-wrap justify-center gap-6">
+              {CATEGORIES.map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setSelectedCategory(cat)}
+                  className={`min-w-[180px] rounded-full px-10 py-4 text-sm md:text-base uppercase tracking-[0.2em] transition-all duration-300 
+                    ${selectedCategory === cat
+                      ? "bg-[#0f0f0f] text-white shadow-xl scale-110"
+                      : "bg-white border border-[#e5e5e0] text-[#0f0f0f] hover:border-[#0f0f0f] hover:-translate-y-1 hover:shadow-md"
+                    }
+                  `}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* PRODUCT GRID */}
+        {selectedCategory && (
+          <section className="mx-auto mt-10 max-w-6xl px-4 animate-fadeIn">
+            <div className="mb-6 flex items-baseline justify-between border-b border-[#e5e5e0] pb-4">
+              <h2 className="text-xl md:text-2xl uppercase tracking-[0.25em] text-[#0f0f0f]">
+                {selectedCategory}
+              </h2>
+              <button
+                onClick={() => setSelectedCategory(null)}
+                className="text-xs uppercase tracking-[0.2em] text-[#6a6a6a] hover:text-[#0f0f0f]"
+              >
+                Clear Filter
+              </button>
             </div>
 
-            <h1 className="mt-4 text-4xl md:text-6xl font-light text-[#0f0f0f]">
-              Classic · Platform · Mega Crush.
-            </h1>
-
-            <p className="mt-3 max-w-xl text-sm md:text-base text-[#4a4a4a]">
-              Current Crocs available at STORE OVERSIZED. Stock updates as items
-              move — screenshot and DM to confirm availability.
-            </p>
-          </div>
-        </section>
-
-        {/* GRID */}
-        <section className="mx-auto mt-10 max-w-6xl px-4">
-          <div className="mb-6 flex items-baseline justify-between">
-            <h2 className="text-lg uppercase tracking-[0.25em] text-[#0f0f0f]">
-              Available Crocs
-            </h2>
-            <p className="text-[11px] uppercase tracking-[0.2em] text-[#6a6a6a]">
-              Display only · DM to reserve
-            </p>
-          </div>
-
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {CROCS_ITEMS.map((item) => (
-              <article
-                key={item.name + item.color}
-                className="group flex flex-col overflow-hidden rounded-2xl border border-[#e5e5e0] bg-white transition hover:-translate-y-1 hover:border-[#0f0f0f]"
-              >
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <img
-                    src={item.img}
-                    alt={item.name}
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/5 to-transparent" />
-                  <div className="absolute bottom-3 left-3 rounded-full bg-white/85 px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-[#0f0f0f] border border-[#e5e5e0]">
-                    {item.condition}
-                  </div>
-                </div>
-
-                <div className="flex flex-1 flex-col gap-2 px-4 py-4">
-                  <div className="text-[11px] uppercase tracking-[0.25em] text-[#4a4a4a]">
-                    {item.color}
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {filteredItems.map((item, idx) => (
+                <article
+                  key={item.category + item.color + idx}
+                  className="group flex flex-col overflow-hidden rounded-2xl bg-white transition hover:-translate-y-1 hover:shadow-xl shadow-sm border border-transparent hover:border-[#e5e5e0]"
+                >
+                  <div className="relative aspect-[4/3] overflow-hidden bg-[#fafaf8]">
+                    <img
+                      src={item.img}
+                      alt={item.name}
+                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-black/0 transition-colors group-hover:bg-black/5" />
+                    <div className="absolute bottom-3 left-3 rounded-full bg-white/90 px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-[#0f0f0f] shadow-sm backdrop-blur-sm">
+                      {item.condition}
+                    </div>
                   </div>
 
-                  <h3 className="text-base md:text-lg font-light text-[#0f0f0f]">
-                    {item.name}
-                  </h3>
+                  <div className="flex flex-1 flex-col p-6">
+                    <div className="flex justify-between items-start">
+                      <div className="text-[10px] uppercase tracking-[0.25em] text-[#6a6a6a]">
+                        {item.color}
+                      </div>
+                      <div className="font-medium text-[#0f0f0f]">
+                        ${item.price.toFixed(2)}
+                      </div>
+                    </div>
 
-                  <p className="mt-1 text-[12px] leading-relaxed text-[#4a4a4a]">
-                    {item.description}
-                  </p>
+                    <h3 className="mt-2 text-lg font-normal text-[#0f0f0f]">
+                      {item.name}
+                    </h3>
 
-                  <span className="mt-3 inline-block w-fit rounded-full border border-[#e5e5e0] bg-[#fafaf8] px-2 py-1 text-[11px] uppercase tracking-[0.18em] text-[#0f0f0f]">
-                    {item.type}
-                  </span>
+                    <p className="mt-2 text-sm leading-relaxed text-[#6a6a6a]">
+                      {item.description}
+                    </p>
 
-                  <p className="mt-3 text-[11px] text-[#6a6a6a]">
-                    DM with a screenshot of this card to confirm availability.
-                  </p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
+                    <div className="mt-auto pt-6">
+                      <span className="inline-block w-full rounded-lg bg-[#fafaf8] py-2 text-center text-[10px] uppercase tracking-[0.2em] text-[#0f0f0f] group-hover:bg-[#0f0f0f] group-hover:text-white transition-colors">
+                        View Details
+                      </span>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
       </main>
     </div>
   );
