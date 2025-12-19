@@ -1,89 +1,22 @@
 "use client";
 
 import React, { useState } from "react";
+import Navbar from "../components/Navbar";
+import { CROCS_ITEMS } from "../data";
 
 type Category =
-  | "Classic Clog"
-  | "LiteRide Clog"
-  | "Crocband Clog"
-  | "Baya Clog"
-  | "Classic Slide";
+  | "Classic"
+  | "Baya"
+  | "Marbled"
+  | "RealTree"
+  | "CrocBand";
 
-const CROCS_ITEMS = [
-  {
-    name: "Classic Clog",
-    color: "Black",
-    type: "Unisex",
-    condition: "New / Tag",
-    img: "/1crocs.jpeg",
-    price: 49.99,
-    category: "Classic Clog",
-    description:
-      "The original Classic Clog. Lightweight, water-friendly, and perfect for any occasion.",
-  },
-  {
-    name: "Classic Clog",
-    color: "White",
-    type: "Unisex",
-    condition: "New / Tag",
-    img: "/4crocs.jpeg", // Reusing image
-    price: 49.99,
-    category: "Classic Clog",
-    description:
-      "Fresh white Classic Clogs. The ultimate canvas for your Jibbitz™ charms.",
-  },
-  {
-    name: "LiteRide 360 Clog",
-    color: "Navy / Pepper",
-    type: "Unisex",
-    condition: "New / Boxed",
-    img: "/2crocs.jpeg", // Reusing image as placeholder
-    price: 64.99,
-    category: "LiteRide Clog",
-    description:
-      "Innovative comfort with LiteRide™ foam technology. softness and modern athletic style.",
-  },
-  {
-    name: "Crocband Clog",
-    color: "Charcoal / Ocean",
-    type: "Unisex",
-    condition: "New / Tag",
-    img: "/3crocs.jpeg", // Reusing image as placeholder
-    price: 54.99,
-    category: "Crocband Clog",
-    description:
-      "Vintage sneaker style meets Crocs comfort. Sporty midsole racing stripe for a retro look.",
-  },
-  {
-    name: "Baya Clog",
-    color: "Pepper",
-    type: "Unisex",
-    condition: "New / Tag",
-    img: "/5crocs.jpeg", // Reusing image as placeholder
-    price: 49.99,
-    category: "Baya Clog",
-    description:
-      "Designed with advanced ventilation and breathable comfort. The Baya keeps you cool.",
-  },
-  {
-    name: "Classic Slide",
-    color: "Bone",
-    type: "Unisex",
-    condition: "New / Tag",
-    img: "/1crocs.jpeg", // Reusing image
-    price: 29.99,
-    category: "Classic Slide",
-    description:
-      "All the comfort of the Classic Clog, now in a slide. Easy on, easy off.",
-  },
-];
-
-const CATEGORIES: Category[] = [
-  "Classic Clog",
-  "LiteRide Clog",
-  "Crocband Clog",
-  "Baya Clog",
-  "Classic Slide",
+const CATEGORIES: { id: Category; label: string; img: string }[] = [
+  { id: "Classic", label: "Classic", img: "/cat-classic.jpg" },
+  { id: "Baya", label: "Baya", img: "/cat-baya.jpg" },
+  { id: "Marbled", label: "Marbled", img: "/cat-marbled.jpg" },
+  { id: "RealTree", label: "RealTree", img: "/cat-realtree.jpg" },
+  { id: "CrocBand", label: "CrocBand", img: "/cat-crocband.jpg" },
 ];
 
 export default function CrocsPage() {
@@ -95,63 +28,11 @@ export default function CrocsPage() {
 
   return (
     <div className="min-h-screen">
-      {/* NAVBAR */}
-      <header className="sticky top-0 z-40 border-b border-[#e5e5e0] bg-[#fafaf8]/90 backdrop-blur">
-        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
-          <a href="/" className="text-2xl md:text-3xl tracking-[0.25em] font-light text-[#0f0f0f]">
-            STORE OVERSIZED
-          </a>
-
-          <nav className="hidden gap-6 text-xs md:flex">
-            <a
-              href="/"
-              className="uppercase tracking-[0.18em] text-[#4a4a4a] hover:text-[#0f0f0f]"
-            >
-              Home
-            </a>
-
-            <span className="uppercase tracking-[0.18em] text-[#0f0f0f]">
-              Crocs
-            </span>
-
-            <a
-              href="/birkenstock"
-              className="uppercase tracking-[0.18em] text-[#4a4a4a] hover:text-[#0f0f0f]"
-            >
-              Birkenstock
-            </a>
-
-            <a
-              href="/size"
-              className="uppercase tracking-[0.18em] text-[#4a4a4a] hover:text-[#0f0f0f]"
-            >
-              Size
-            </a>
-
-            <a
-              href="/authenticity"
-              className="uppercase tracking-[0.18em] text-[#4a4a4a] hover:text-[#0f0f0f]"
-            >
-              Authenticity
-            </a>
-
-            <a
-              href="/contact"
-              className="uppercase tracking-[0.18em] text-[#4a4a4a] hover:text-[#0f0f0f]"
-            >
-              Contact
-            </a>
-          </nav>
-
-          <div className="text-xs uppercase tracking-[0.18em] text-[#4a4a4a]">
-            Display only
-          </div>
-        </div>
-      </header>
+      <Navbar />
 
       <main className="pb-16">
         {/* HERO */}
-        <section className="relative flex min-h-[50vh] items-end overflow-hidden">
+        <section className="relative flex min-h-[40vh] items-end overflow-hidden">
           <img
             src="/1crocs.jpeg"
             alt="Crocs lineup"
@@ -161,40 +42,56 @@ export default function CrocsPage() {
           {/* light-friendly overlays */}
           <div className="absolute inset-0 bg-gradient-to-t from-white/95 via-white/80 to-white/10" />
 
-          <div className="relative z-10 mx-auto w-full max-w-6xl px-4 pb-16 pt-24 text-center">
+          <div className="relative z-10 mx-auto w-full max-w-6xl px-4 pb-10 pt-24 text-center">
             <h1 className="text-4xl md:text-6xl font-light text-[#0f0f0f] tracking-tight">
               Crocs Collection
             </h1>
             <p className="mx-auto mt-4 max-w-lg text-sm md:text-base text-[#4a4a4a]">
-              Discover our range of iconic comfort. Select a style to view available colors.
+              Select a style below to view available colors.
             </p>
+          </div>
+        </section>
 
-            {/* CATEGORY BUTTONS - LARGER */}
-            <div className="mt-12 flex flex-wrap justify-center gap-6">
-              {CATEGORIES.map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => setSelectedCategory(cat)}
-                  className={`min-w-[180px] rounded-full px-10 py-4 text-sm md:text-base uppercase tracking-[0.2em] transition-all duration-300 
-                    ${selectedCategory === cat
-                      ? "bg-[#0f0f0f] text-white shadow-xl scale-110"
-                      : "bg-white border border-[#e5e5e0] text-[#0f0f0f] hover:border-[#0f0f0f] hover:-translate-y-1 hover:shadow-md"
-                    }
+        {/* IMAGE CATEGORY SELECTOR */}
+        <section className="relative z-20 mx-auto max-w-6xl px-4 py-12">
+          <div className="flex flex-wrap justify-center gap-6 md:gap-8">
+            {CATEGORIES.map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => setSelectedCategory(cat.id)}
+                className={`group flex flex-col items-center gap-3 transition-all duration-300
+                    ${selectedCategory === cat.id ? "scale-110" : "hover:scale-105 opacity-90 hover:opacity-100"}
                   `}
-                >
-                  {cat}
-                </button>
-              ))}
-            </div>
+              >
+                <div className={`
+                    relative h-24 w-24 md:h-32 md:w-32 overflow-hidden rounded-full border-2 shadow-lg transition-colors
+                    ${selectedCategory === cat.id ? "border-[#0f0f0f] ring-2 ring-[#0f0f0f]/20" : "border-white group-hover:border-[#e5e5e0]"}
+                  `}>
+                  <img
+                    src={cat.img}
+                    alt={cat.label}
+                    className="h-full w-full object-cover"
+                  />
+                  {selectedCategory === cat.id && (
+                    <div className="absolute inset-0 bg-black/10" />
+                  )}
+                </div>
+                <span className={`text-xs uppercase tracking-[0.2em] font-medium 
+                    ${selectedCategory === cat.id ? "text-[#0f0f0f]" : "text-[#6a6a6a]"}
+                  `}>
+                  {cat.label}
+                </span>
+              </button>
+            ))}
           </div>
         </section>
 
         {/* PRODUCT GRID */}
         {selectedCategory && (
-          <section className="mx-auto mt-10 max-w-6xl px-4 animate-fadeIn">
+          <section className="mx-auto mt-16 max-w-6xl px-4 animate-fadeIn">
             <div className="mb-6 flex items-baseline justify-between border-b border-[#e5e5e0] pb-4">
               <h2 className="text-xl md:text-2xl uppercase tracking-[0.25em] text-[#0f0f0f]">
-                {selectedCategory}
+                {selectedCategory} Collection
               </h2>
               <button
                 onClick={() => setSelectedCategory(null)}
