@@ -12,11 +12,11 @@ type Category =
   | "CrocBand";
 
 const CATEGORIES: { id: Category; label: string; img: string }[] = [
-  { id: "Classic", label: "Classic", img: "/cat-classic.jpg" },
-  { id: "Baya", label: "Baya", img: "/cat-baya.jpg" },
-  { id: "Marbled", label: "Marbled", img: "/cat-marbled.jpg" },
-  { id: "RealTree", label: "RealTree", img: "/cat-realtree.jpg" },
-  { id: "CrocBand", label: "CrocBand", img: "/cat-crocband.jpg" },
+  { id: "Classic", label: "Classic", img: "/Classic.jpeg" },
+  { id: "Baya", label: "Baya", img: "/Baya.jpeg" },
+  { id: "Marbled", label: "Marbled", img: "/Marbled.jpeg" },
+  { id: "RealTree", label: "RealTree", img: "/RealTree.jpeg" },
+  { id: "CrocBand", label: "CrocBand", img: "/CrocBand.jpeg" },
 ];
 
 export default function CrocsPage() {
