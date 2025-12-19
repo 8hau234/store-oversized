@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
+import Navbar from "./components/Navbar";
 
 // simple data for each full-screen section
 const SLIDES = [
@@ -31,122 +32,11 @@ const SLIDES = [
 ];
 
 export default function Home() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <div className="min-h-screen">
       {/* NAVBAR (light) */}
-      <header className="sticky top-0 z-40 border-b border-[#e5e5e0] bg-[#fafaf8]/90 backdrop-blur">
-        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
-          {/* LOGO */}
-          <div className="text-xl md:text-2xl tracking-[0.25em] font-light whitespace-nowrap text-[#0f0f0f]">
-            STORE OVERSIZED
-          </div>
-
-          {/* DESKTOP NAV */}
-          <nav className="hidden gap-6 text-xs md:flex">
-            <a
-              href="/"
-              className="uppercase tracking-[0.18em] text-[#0f0f0f] font-medium"
-            >
-              Home
-            </a>
-            <a
-              href="/crocs"
-              className="uppercase tracking-[0.18em] text-[#4a4a4a] hover:text-[#0f0f0f]"
-            >
-              Crocs
-            </a>
-            <a
-              href="/birkenstock"
-              className="uppercase tracking-[0.18em] text-[#4a4a4a] hover:text-[#0f0f0f]"
-            >
-              Birkenstock
-            </a>
-            <a
-              href="/size"
-              className="uppercase tracking-[0.18em] text-[#4a4a4a] hover:text-[#0f0f0f]"
-            >
-              Size
-            </a>
-            <a
-              href="/authenticity"
-              className="uppercase tracking-[0.18em] text-[#4a4a4a] hover:text-[#0f0f0f]"
-            >
-              Authenticity
-            </a>
-            <a
-              href="/contact"
-              className="uppercase tracking-[0.18em] text-[#4a4a4a] hover:text-[#0f0f0f]"
-            >
-              Contact
-            </a>
-          </nav>
-
-          {/* HAMBURGER */}
-          <button
-            className="md:hidden"
-            onClick={() => setIsMenuOpen((p) => !p)}
-            aria-label="Toggle menu"
-          >
-            <div className="space-y-1">
-              <span className="block h-[2px] w-5 bg-[#0f0f0f]" />
-              <span className="block h-[2px] w-5 bg-[#0f0f0f]" />
-              <span className="block h-[2px] w-5 bg-[#0f0f0f]" />
-            </div>
-          </button>
-        </div>
-
-        {/* MOBILE MENU */}
-        {isMenuOpen && (
-          <div className="md:hidden border-t border-[#e5e5e0] bg-[#fafaf8]">
-            <nav className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-4 text-xs">
-              <a
-                href="/"
-                onClick={() => setIsMenuOpen(false)}
-                className="uppercase tracking-[0.2em] text-[#0f0f0f]"
-              >
-                Home
-              </a>
-              <a
-                href="/crocs"
-                onClick={() => setIsMenuOpen(false)}
-                className="uppercase tracking-[0.2em] text-[#4a4a4a] hover:text-[#0f0f0f]"
-              >
-                Crocs
-              </a>
-              <a
-                href="/birkenstock"
-                onClick={() => setIsMenuOpen(false)}
-                className="uppercase tracking-[0.2em] text-[#4a4a4a] hover:text-[#0f0f0f]"
-              >
-                Birkenstock
-              </a>
-              <a
-                href="/size"
-                onClick={() => setIsMenuOpen(false)}
-                className="uppercase tracking-[0.2em] text-[#4a4a4a] hover:text-[#0f0f0f]"
-              >
-                Size
-              </a>
-              <a
-                href="/authenticity"
-                onClick={() => setIsMenuOpen(false)}
-                className="uppercase tracking-[0.2em] text-[#4a4a4a] hover:text-[#0f0f0f]"
-              >
-                Authenticity
-              </a>
-              <a
-                href="/contact"
-                onClick={() => setIsMenuOpen(false)}
-                className="uppercase tracking-[0.2em] text-[#4a4a4a] hover:text-[#0f0f0f]"
-              >
-                Contact
-              </a>
-            </nav>
-          </div>
-        )}
-      </header>
+      <Navbar />
 
       {/* FULLSCREEN SECTIONS */}
       <main>
